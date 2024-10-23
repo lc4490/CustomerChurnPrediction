@@ -1,15 +1,10 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "main.py", "use": "@vercel/python" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "main.py" }
-  ],
-  "env": {
-    "PORT": "8501"
-  },
-  "build": {
-    "command": "streamlit run main.py"
+    "version": 2,
+    "builds": [
+      { "src": "main.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "main.py" }
+    ]
   }
-}
+  
