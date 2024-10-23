@@ -43,7 +43,7 @@ def prepare_input(credit_score, location, gender, age, tenure, balance, num_of_p
   return input_df, input_dict
 
 def make_predictions(input_df, input_dict):
-  xgboost_model = load_model("xgb_model.pkl")
+  # xgboost_model = load_model("xgb_model.pkl")
   # naive_bayes_model = load_model("nb_model.pkl")
   random_forest_model = load_model("rf_model.pkl")
   # decision_tree_model = load_model("dt_model.pkl")
@@ -53,7 +53,6 @@ def make_predictions(input_df, input_dict):
   # xgboost_SMOTE_model = load_model("xgboost-SMOTE.pkl")
   # xgboost_featureEngineered_model = load_model("xgboost-featureEngineered.pkl")
   probabilities = {
-    "XGBoost": xgboost_model.predict_proba(input_df)[0][1],
     "Random Forest": random_forest_model.predict_proba(input_df)[0][1],
     "K-Nearest Neighbors": knn_model.predict_proba(input_df)[0][1],
   }
