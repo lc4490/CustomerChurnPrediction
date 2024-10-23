@@ -4,4 +4,3 @@ numpy==2.1.1
 openai==1.43.0
 python-dotenv==1.0.1
 scikit-learn==1.5.2
-xgboost==2.1.2
