@@ -19,20 +19,9 @@ client = openai.OpenAI(
   base_url="https://api.groq.com/openai/v1"
   )
 
-
 def load_model(filename):
   with open(filename, "rb") as file:
     return pickle.load(file)
-
-xgboost_model = load_model("xgb_model.pkl")
-# naive_bayes_model = load_model("nb_model.pkl")
-random_forest_model = load_model("rf_model.pkl")
-# decision_tree_model = load_model("dt_model.pkl")
-# svm_model = load_model("svm_model.pkl")
-knn_model = load_model("knn_model.pkl")
-# voting_clafier_model = load_model("voting_clif.pkl")
-# xgboost_SMOTE_model = load_model("xgboost-SMOTE.pkl")
-# xgboost_featureEngineered_model = load_model("xgboost-featureEngineered.pkl")
 
 def prepare_input(credit_score, location, gender, age, tenure, balance, num_of_products, has_credit_card, is_active_member, estimated_salary):
   input_dict = {
@@ -54,6 +43,15 @@ def prepare_input(credit_score, location, gender, age, tenure, balance, num_of_p
   return input_df, input_dict
 
 def make_predictions(input_df, input_dict):
+  xgboost_model = load_model("xgb_model.pkl")
+  # naive_bayes_model = load_model("nb_model.pkl")
+  random_forest_model = load_model("rf_model.pkl")
+  # decision_tree_model = load_model("dt_model.pkl")
+  # svm_model = load_model("svm_model.pkl")
+  knn_model = load_model("knn_model.pkl")
+  # voting_clafier_model = load_model("voting_clif.pkl")
+  # xgboost_SMOTE_model = load_model("xgboost-SMOTE.pkl")
+  # xgboost_featureEngineered_model = load_model("xgboost-featureEngineered.pkl")
   probabilities = {
     "XGBoost": xgboost_model.predict_proba(input_df)[0][1],
     "Random Forest": random_forest_model.predict_proba(input_df)[0][1],
@@ -208,14 +206,15 @@ if selected_customer_option:
 
   input_df, input_dict = prepare_input(credit_score, location, gender, age, tenure, balance, num_products, has_credit_card, is_active_member, estimated_salary)
 
-  avg_probability = make_predictions(input_df, input_dict)
+  if st.button("Make Predictions"):
+    avg_probability = make_predictions(input_df, input_dict)
 
-  explanation = explain_prediction(avg_probability, input_dict, selected_customer["Surname"])
-  st.markdown("---")
-  st.markdown("Explanation of Prediction")
-  st.markdown(explanation)
-  email = generate_email(avg_probability, input_dict, explanation, selected_customer["Surname"])
-  st.markdown("---")
-  st.markdown("Personalized Email")
-  st.markdown(email)
+    explanation = explain_prediction(avg_probability, input_dict, selected_customer["Surname"])
+    st.markdown("---")
+    st.markdown("Explanation of Prediction")
+    st.markdown(explanation)
+    email = generate_email(avg_probability, input_dict, explanation, selected_customer["Surname"])
+    st.markdown("---")
+    st.markdown("Personalized Email")
+    st.markdown(email)
 
