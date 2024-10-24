@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 import openai
 import os
+os.environ["PORT"] = os.getenv("PORT", "8501")
 
 from dotenv import load_dotenv
 
