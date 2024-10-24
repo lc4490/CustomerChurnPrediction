@@ -7,8 +7,6 @@
     { "src": "/(.*)", "dest": "main.py" }
   ],
   "functions": {
-    "main.py": {
-      "excludeFiles": ["venv/**", "*.pkl", "tests/**", "*.md"]
-    }
+    "excludeFiles": "**/*.pkl"
   }
 }
