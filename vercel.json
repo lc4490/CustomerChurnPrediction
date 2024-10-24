@@ -8,7 +8,7 @@
   ],
   "functions": {
     "main.py": {
-      "excludeFiles": "**/*.pkl"
+      "excludeFiles": ["venv/**", "*.pkl", "tests/**", "*.md"]
     }
   }
 }
